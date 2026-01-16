@@ -29,16 +29,20 @@ fun DreamTeamApp() {
         navController = navController,
         startDestination = "home"
     ) {
+        // Home screen
         composable("home") {
             HomeScreen(navController)
         }
-        composable("student2") { Student1() }
+
+        // Student screens
+        composable("student1") { Student1() }
         composable("student2") { Student2() }
         composable("student3") { Student3() }
         composable("student4") { Student4() }
         composable("student5") { Student5() }
     }
 }
+
 
 @Composable
 fun HomeScreen(navController: NavController) {
