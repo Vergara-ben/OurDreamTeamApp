@@ -29,7 +29,7 @@ fun Student2() {
         ) {
 
             Image(
-                painter = painterResource(id = R.drawable.img),
+                painter = painterResource(id = R.drawable.s1),
                 contentDescription = "Profile Picture",
                 modifier = Modifier
                     .size(120.dp)
