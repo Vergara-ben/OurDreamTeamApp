@@ -47,7 +47,7 @@ fun Student3(navController: NavController) {
                 )
         )
 
-        // Profile Picture and Name Section
+        // Profile Picture and Name Sections
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
