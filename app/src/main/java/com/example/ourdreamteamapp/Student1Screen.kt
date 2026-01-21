@@ -1,155 +1,286 @@
 package com.example.ourdreamteamapp
 
-// Compose UI elements
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-
-// Material 3 components
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-
-// Compose runtime annotation
 import androidx.compose.runtime.Composable
-
-// UI utilities
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
-// Navigation component
 import androidx.navigation.NavController
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 
-// Composable screen for Student 1 profile
+
 @Composable
-fun Student1(navController: NavController) {  // NavController for back navigation
+fun Student1(navController: NavController) {
 
-    // Color palette used in this screen
-    val backgroundColor = Color(0xFF0F3D2E)
-    val primaryText = Color(0xFFF1F8E9)
-    val secondaryText = Color(0xFFB7E1CD)
-    val accentColor = Color(0xFF4CAF50)
-    val cardColor = Color(0xFF145A32)
-
-    // Main vertical layout
     Column(
         modifier = Modifier
-            .fillMaxSize()                 // Fill entire screen
-            .background(backgroundColor)   // Set background color
-            .padding(horizontal = 28.dp),  // Horizontal padding
-        horizontalAlignment = Alignment.CenterHorizontally
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+            .verticalScroll(rememberScrollState())
     ) {
 
-        Spacer(modifier = Modifier.height(48.dp)) // Top spacing
+        // Top Spacing
+        Spacer(modifier = Modifier.height(40.dp))
 
-        // Profile Image container
-        Surface(
-            shape = CircleShape,           // Circular shape
-            color = accentColor,           // Border/background color
-            modifier = Modifier.size(150.dp)
+        // Profile Section
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 28.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.student1), // Profile image
-                contentDescription = "Vergara, Ben Mark C.",
-                modifier = Modifier
-                    .padding(4.dp)         // Inner spacing
-                    .clip(CircleShape)     // Clip image into circle
+            // Profile Image
+            Surface(
+                shape = CircleShape,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.size(150.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.student1),
+                    contentDescription = "Vergara, Ben Mark C.",
+                    modifier = Modifier
+                        .padding(4.dp)
+                        .clip(CircleShape)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            // Name
+            Text(
+                text = "Vergara, Ben Mark C.",
+                color = MaterialTheme.colorScheme.onBackground,
+                style = MaterialTheme.typography.headlineMedium.copy(fontSize = 28.sp),
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
             )
+
+            // Role
+            Text(
+                text = "Android Developer",
+                color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Medium
+            )
+
+            Spacer(modifier = Modifier.height(32.dp))
         }
 
-        Spacer(modifier = Modifier.height(20.dp)) // Spacing below image
-
-        // Student Name
-        Text(
-            text = "Vergara, Ben Mark C.",
-            color = primaryText,
-            style = MaterialTheme.typography.headlineMedium.copy(
-                fontSize = 28.sp
-            ),
-            fontWeight = FontWeight.Bold
-        )
-
-        // Student Role
-        Text(
-            text = "Android Developer",
-            color = accentColor,
-            style = MaterialTheme.typography.titleMedium
-        )
-
-        Spacer(modifier = Modifier.height(24.dp)) // Spacing before card
-
-        // Information Card (About & Skills)
-        Card(
-            colors = CardDefaults.cardColors(containerColor = cardColor),
-            modifier = Modifier.fillMaxWidth()
+        // Information Cards Section
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 28.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            Column(
-                modifier = Modifier.padding(20.dp),           // Inner padding
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+            // About Card
+            Card(
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surface
+                ),
+                modifier = Modifier.fillMaxWidth(),
+                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+                shape = RoundedCornerShape(20.dp)
             ) {
+                Column(
+                    modifier = Modifier.padding(24.dp)
+                ) {
+                    // About Header
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(40.dp)
+                                .clip(CircleShape)
+                                .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "👨‍💻",
+                                fontSize = 20.sp
+                            )
+                        }
 
-                // About section
-                Column {
-                    Text(
-                        text = "About",
-                        color = accentColor,
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = "I’m a programmer who enjoys building practical solutions using code. I’m always learning new technologies and improving my problem-solving skills.",
-                        color = secondaryText,
-                        style = MaterialTheme.typography.bodyLarge
-                    )
+                        Spacer(modifier = Modifier.width(12.dp))
+
+                        Text(
+                            text = "About Me",
+                            color = MaterialTheme.colorScheme.primary,
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+
+                    // About Content Box
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(
+                                color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.1f),
+                                shape = RoundedCornerShape(12.dp)
+                            )
+                            .padding(16.dp)
+                    ) {
+                        Text(
+                            text = "I'm a programmer who enjoys building practical solutions using code. I'm always learning new technologies and improving my problem-solving skills.",
+                            color = MaterialTheme.colorScheme.onSurface,
+                            style = MaterialTheme.typography.bodyLarge,
+                            lineHeight = 24.sp
+                        )
+                    }
                 }
+            }
 
-                // Skills section
-                Column {
-                    Text(
-                        text = "Skills",
-                        color = accentColor,
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = "• Logical Thinking \n" +
-                                "• UI Design \n" +
-                                "• Problem Solving",
-                        color = secondaryText,
-                        style = MaterialTheme.typography.bodyLarge,
-                        textAlign = TextAlign.Start
-                    )
+            // Skills Card
+            Card(
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surface
+                ),
+                modifier = Modifier.fillMaxWidth(),
+                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+                shape = RoundedCornerShape(20.dp)
+            ) {
+                Column(
+                    modifier = Modifier.padding(24.dp)
+                ) {
+                    // Skills Header
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(40.dp)
+                                .clip(CircleShape)
+                                .background(MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "⚡",
+                                fontSize = 20.sp
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.width(12.dp))
+
+                        Text(
+                            text = "My Skills",
+                            color = MaterialTheme.colorScheme.secondary,
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+
+                    // Skills Content
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(
+                                color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.1f),
+                                shape = RoundedCornerShape(12.dp)
+                            )
+                            .padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(14.dp)
+                    ) {
+                        // Skill 1
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(10.dp)
+                                    .clip(CircleShape)
+                                    .background(MaterialTheme.colorScheme.primary)
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Text(
+                                text = "Logical Thinking",
+                                color = MaterialTheme.colorScheme.onSurface,
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Medium
+                            )
+                        }
+
+                        // Skill 2
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(10.dp)
+                                    .clip(CircleShape)
+                                    .background(MaterialTheme.colorScheme.primary)
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Text(
+                                text = "UI Design",
+                                color = MaterialTheme.colorScheme.onSurface,
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Medium
+                            )
+                        }
+
+                        // Skill 3
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(10.dp)
+                                    .clip(CircleShape)
+                                    .background(MaterialTheme.colorScheme.primary)
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Text(
+                                text = "Problem Solving",
+                                color = MaterialTheme.colorScheme.onSurface,
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Medium
+                            )
+                        }
+                    }
                 }
             }
         }
 
-        Spacer(modifier = Modifier.height(32.dp)) // Spacing before button
-
-        // Back button to return to previous screen
-        Button(
-            onClick = { navController.popBackStack() }, // Navigate back
-            colors = ButtonDefaults.buttonColors(
-                containerColor = accentColor,
-                contentColor = Color.White
-            ),
+        // Button Section - Properly aligned at bottom
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp)
+                .padding(horizontal = 28.dp)
+                .padding(top = 32.dp, bottom = 40.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "Back",
-                style = MaterialTheme.typography.headlineMedium.copy(
-                    fontSize = 24.sp
+            Button(
+                onClick = { navController.popBackStack() },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text(
+                    text = "Back to Team",
+                    style = MaterialTheme.typography.titleLarge.copy(fontSize = 20.sp),
+                    fontWeight = FontWeight.SemiBold
                 )
-            )
+            }
         }
     }
 }
