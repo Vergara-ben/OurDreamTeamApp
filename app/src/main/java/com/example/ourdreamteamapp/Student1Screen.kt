@@ -224,6 +224,102 @@ fun Student1(navController: NavController) {
                     }
                 }
             }
+
+            // Daily Routine Card (Additional section)
+            Card(
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surface
+                ),
+                modifier = Modifier.fillMaxWidth(),
+                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Column(
+                    modifier = Modifier.padding(20.dp)
+                ) {
+                    // Daily Routine Header
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(40.dp)
+                                .clip(CircleShape)
+                                .background(MaterialTheme.colorScheme.tertiary.copy(alpha = 0.1f)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "📅",
+                                fontSize = 20.sp
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.width(12.dp))
+
+                        Text(
+                            text = "Daily Routine",
+                            color = MaterialTheme.colorScheme.onSurface,
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+
+                    // Daily Routine Content - Time-based schedule
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        // Morning
+                        DailyRoutineItem(
+                            time = "6:00 AM - 8:00 AM",
+                            activity = "Morning Routine & Breakfast",
+                            emoji = "☀️"
+                        )
+
+                        // Study Time
+                        DailyRoutineItem(
+                            time = "8:00 AM - 12:00 PM",
+                            activity = "Coding Practice & Learning",
+                            emoji = "💻"
+                        )
+
+                        // Lunch
+                        DailyRoutineItem(
+                            time = "12:00 PM - 1:00 PM",
+                            activity = "Lunch Break",
+                            emoji = "🍽️"
+                        )
+
+                        // Project Work
+                        DailyRoutineItem(
+                            time = "1:00 PM - 5:00 PM",
+                            activity = "Project Development",
+                            emoji = "🚀"
+                        )
+
+                        // Evening
+                        DailyRoutineItem(
+                            time = "5:00 PM - 7:00 PM",
+                            activity = "Exercise & Relaxation",
+                            emoji = "🏋️"
+                        )
+
+                        // Night
+                        DailyRoutineItem(
+                            time = "7:00 PM - 10:00 PM",
+                            activity = "Study & Personal Projects",
+                            emoji = "📚"
+                        )
+
+                        // Sleep
+                        DailyRoutineItem(
+                            time = "10:00 PM - 6:00 AM",
+                            activity = "Rest & Sleep",
+                            emoji = "😴"
+                        )
+                    }
+                }
+            }
         }
 
         // Button Section
@@ -273,5 +369,41 @@ fun SkillItem(skillName: String) {
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Medium
         )
+    }
+}
+
+@Composable
+fun DailyRoutineItem(time: String, activity: String, emoji: String) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        // Emoji/Icon
+        Text(
+            text = emoji,
+            fontSize = 18.sp,
+            modifier = Modifier.width(40.dp)
+        )
+
+        Spacer(modifier = Modifier.width(8.dp))
+
+        // Time and Activity
+        Column(
+            modifier = Modifier.weight(1f)
+        ) {
+            Text(
+                text = time,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Medium
+            )
+
+            Text(
+                text = activity,
+                color = MaterialTheme.colorScheme.onSurface,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold
+            )
+        }
     }
 }
