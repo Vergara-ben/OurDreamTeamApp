@@ -60,16 +60,16 @@ fun DreamTeamApp() {
             Student1(navController = navController)
         }
         composable("student2") {
-            Student2WithBack(navController = navController)
+            Student2(navController = navController)
         }
         composable("student3") {
             Student3(navController = navController)
         }
         composable("student4") {
-            Student4WithBack(navController = navController)
+            Student4(navController = navController)
         }
         composable("student5") {
-            Student5WithBack(navController = navController)
+            Student5(navController = navController)
         }
     }
 }
@@ -77,11 +77,11 @@ fun DreamTeamApp() {
 @Composable
 fun HomeScreen(navController: NavController) {
     val teamMembers = listOf(
-        TeamMember("Vergara, Ben Mark C.", "Android Developer", "student1"),
-        TeamMember("Samantha Loui A. Vidal", "Student", "student2"),
-        TeamMember("Veluz, Lyndon Rhyianrouvell D.", "UI/UX", "student3"),
-        TeamMember("Tap Glubal, Lunox ", "Programmer", "student4"),
-        TeamMember("Tough Glubal, Leomord", "QA and Tester", "student5")
+        TeamMember("Vergara, Ben Mark C.", "Git Manager", "student1"),
+        TeamMember("Samantha Loui A. Vidal", "UI/UX Developer", "student2"),
+        TeamMember("Veluz, Lyndon Rhyianrouvell D.", "Team Leader", "student3"),
+        TeamMember("Tap Glubal, Lunox ", "Feature Developer", "student4"),
+        TeamMember("Tough Glubal, Leomord", "QA / Documenter", "student5")
     )
 
     Column(
